@@ -1,0 +1,5 @@
+digits, expected exception
+"", java.lang.IllegalArgumentException
+"4242x4242x4242x4242", java.lang.IllegalArgumentException
+"40000565656655S6", java.lang.IllegalArgumentException
+"3782-822463-10005L", java.lang.IllegalArgumentException

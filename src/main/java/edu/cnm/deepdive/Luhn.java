@@ -15,6 +15,8 @@
  */
 package edu.cnm.deepdive;
 
+import java.util.regex.Pattern;
+
 /**
  * This class defines a single static method, {@link #isValid(String)} method, which implements the
  * <a href="https://en.wikipedia.org/wiki/Luhn_algorithm">Luhn algorithm</a> to check the validity
@@ -22,6 +24,9 @@ package edu.cnm.deepdive;
  * opportunity, or practical exam problem of the Deep Dive Coding Java training programs.
  */
 public abstract class Luhn {
+
+  private static final Pattern NON_ALPHA_NUMERIC = Pattern.compile("[\\W_]+");
+  private static final Pattern NON_DIGIT = Pattern.compile("\\D");
 
   private Luhn() {
     // NOTE: There is NO need to do anything with this constructor! The method you will implement in
@@ -39,7 +44,28 @@ public abstract class Luhn {
    *                                  digit characters.
    */
   public static boolean isValid(String digits) throws IllegalArgumentException {
-    throw new UnsupportedOperationException("Not yet implemented"); // TODO Implement as specified.
+    digits = NON_ALPHA_NUMERIC.matcher(digits).replaceAll("");
+    if (NON_DIGIT.matcher(digits).find() || digits.isEmpty()) {
+      throw new IllegalArgumentException();
+    }
+    char[] digitChars = digits.toCharArray();
+    int sum = 0;
+    int count = 0;
+    for (int i = digitChars.length - 1; i >= 0; i--) {
+      char digit = digitChars[i];
+      int value = digit - '0'; // int value = Character.getNumericValue(digit);
+      count++;
+      if (count % 2 != 0) {
+        sum += value;
+      } else {
+        int temp = 2 * value;
+        if (temp > 9) {
+          temp -= 9;
+        }
+        sum += temp;
+      }
+    }
+    return sum % 10 == 0;
   }
 
 }

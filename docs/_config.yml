@@ -1,0 +1,27 @@
+remote_theme: ddc-java/ddc-day
+
+title: Check Digit
+description: "Is the digit sequence valid, according to the Luhn algorithm?"
+
+author:
+  name: Nick Bennett
+  email: nick@nickbenn.com
+
+heading_navigator:
+  enabled: true
+page_navigator:
+  enabled: false
+titles_from_headings:
+  enabled: false
+
+assignment:
+  url: https://classroom.github.com/a/bGBElfjZ
+  format: Gradle Java project
+  value:
+    basic:
+      implementation: 12
+      tests: 8
+    # extra:
+      # implementation: 
+      # tests: 
+  
